@@ -81,7 +81,9 @@ on:
         options:
           - -ophub
           - -1-e9a99d17d12c33240ed4dbf5cdb9cecc
-
+  # 新增定时触发配置（cron 表达式，UTC 时区）
+  schedule:
+    - cron: '0 16 * * *'
 env:
   TZ: Etc/UTC
 
@@ -168,14 +170,14 @@ jobs:
         if: ${{ steps.disk.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
-          kernel_source: ${{ inputs.kernel_source }}
-          kernel_version: ${{ inputs.kernel_version }}
-          kernel_auto: ${{ inputs.kernel_auto }}
-          delete_source: ${{ inputs.delete_source }}
-          kernel_package: ${{ inputs.kernel_package }}
-          kernel_sign: ${{ inputs.kernel_sign }}
-          kernel_toolchain: ${{ inputs.kernel_toolchain }}
-          ccache_clear: ${{ inputs.ccache_clear }}
+          kernel_source: ${{ inputs.kernel_source || 'unifreq' }}
+          kernel_version: ${{ inputs.kernel_version || '6.1.y_6.6.y_6.12.y' }}
+          kernel_auto: ${{ inputs.kernel_auto != false }}
+          delete_source: ${{ inputs.delete_source != false }}
+          kernel_package: ${{ inputs.kernel_package || 'all' }}
+          kernel_sign: ${{ inputs.kernel_sign || '-1-e9a99d17d12c33240ed4dbf5cdb9cecc' }}
+          kernel_toolchain: ${{ inputs.kernel_toolchain || 'gcc' }}
+          ccache_clear: ${{ inputs.ccache_clear != false }}
           docker_hostpath: /builder
           docker_image: ophub/armbian-${{ inputs.docker_image }}:arm64
 

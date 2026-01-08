@@ -179,7 +179,7 @@ jobs:
           kernel_toolchain: ${{ inputs.kernel_toolchain || 'gcc' }}
           ccache_clear: ${{ inputs.ccache_clear != false }}
           docker_hostpath: /builder
-          docker_image: ophub/armbian-${{ inputs.docker_image }}:arm64
+          docker_image: ophub/armbian-trixie:arm64
 
       - name: Upload Kernel to Release
         uses: ncipollo/release-action@main

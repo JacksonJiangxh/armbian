@@ -80,7 +80,7 @@ on:
         type: choice
         options:
           - -ophub
-          - -yourname
+          - -1-e9a99d17d12c33240ed4dbf5cdb9cecc
 
 env:
   TZ: Etc/UTC

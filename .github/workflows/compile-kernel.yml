@@ -171,7 +171,7 @@ jobs:
         with:
           build_target: kernel
           kernel_source: ${{ inputs.kernel_source || 'unifreq' }}
-          kernel_version: ${{ inputs.kernel_version || '6.1.y_6.6.y_6.12.y' }}
+          kernel_version: ${{ inputs.kernel_version || '6.12.y' }}
           kernel_auto: ${{ inputs.kernel_auto != false }}
           delete_source: ${{ inputs.delete_source != false }}
           kernel_package: ${{ inputs.kernel_package || 'all' }}
